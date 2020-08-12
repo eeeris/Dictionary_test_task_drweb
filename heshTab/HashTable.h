@@ -19,7 +19,7 @@ public:
 
     hash<TKey> hash_func = {};
     
-
+    
     class Exception : public NotFoundException<TKey>
     {
     public:
@@ -31,7 +31,6 @@ public:
         }
     private:
         TKey key;
-
     };
 
     pair <Bucket&, TValue*> Find(const TKey& key) const
@@ -55,11 +54,8 @@ public:
         throw Exception{ key };
     }
 
-    void Set(const TKey& key, const TValue& value) override // добавить - заменить
+    void Set(const TKey& key, const TValue& value) override 
     {
-        /*auto bucket_number = hash_func(key) % buckets.size();
-        auto& bucket = buckets[bucket_number];
-        auto it = find_if(bucket.begin(), bucket.end(), [key](pair <TKey, TValue> const& item) {return (item.first == key); });*/
         auto [bucket, p_value] = Find(key);
         if (p_value == nullptr)
         {
@@ -69,14 +65,10 @@ public:
         {
             *p_value = value;
         }
-
     }
 
-    bool IsSet(const TKey& key) const override // задано ли
+    bool IsSet(const TKey& key) const override
     {
-        /*auto bucket_number = hash_func(key) % buckets.size();
-        auto& bucket = buckets[bucket_number];
-        auto it = find_if(bucket.begin(), bucket.end(), [key](pair <TKey, TValue> const& item) {return (item.first == key); });*/
         auto [bucket, p_value] = Find(key);
         return (p_value);
     }

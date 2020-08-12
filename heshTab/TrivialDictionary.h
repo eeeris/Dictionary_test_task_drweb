@@ -34,15 +34,14 @@ class TrivialDictionary : public Dictionary<TKey, TValue>
         }
     }
 
-    void Set(const TKey& key, const TValue& value) noexcept override // добавить - заменить
+    void Set(const TKey& key, const TValue& value) noexcept override 
     {
         dictionary[key] = value;
     }
 
-    bool IsSet(const TKey& key) const noexcept override // задано ли
+    bool IsSet(const TKey& key) const noexcept override 
     {
         auto it = dictionary.find(key);
         return (it != dictionary.end());
-
     }
 };
