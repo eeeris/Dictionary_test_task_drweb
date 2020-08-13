@@ -1,5 +1,5 @@
 #pragma once
-#include <map>
+#include <unordered_map>
 
 using namespace std;
 
@@ -20,7 +20,7 @@ class TrivialDictionary : public Dictionary<TKey, TValue>
 
     };
 
-    map<TKey, TValue> dictionary;
+    unordered_map<TKey, TValue> dictionary;
     const TValue& Get(const TKey& key) const override
     {
         auto it = dictionary.find(key);
